@@ -1,6 +1,9 @@
 import 'package:design_patterns_flutter/adapter/dollar_adapter.dart';
 import 'package:design_patterns_flutter/adapter/yen_adapter.dart';
+import 'package:design_patterns_flutter/currencies/currency.dart';
+import 'package:design_patterns_flutter/currencies/dollar.dart';
 import 'package:design_patterns_flutter/currencies/won.dart';
+import 'package:design_patterns_flutter/currencies/yen.dart';
 import 'package:design_patterns_flutter/singleton/exchange_rate_service.dart';
 import 'package:flutter/material.dart';
 
@@ -197,12 +200,7 @@ class _VendingMachineState extends State<VendingMachine> {
                     } else {
                       won = Won(faceValue: 10000);
                     }
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text('${won.faceValue}원을 삽입해주십시오.'),
-                      ),
-                    );
+                    _showDialog(won);
                   }
 
                   if (currentCurrencyIndex == 1) {
@@ -222,12 +220,7 @@ class _VendingMachineState extends State<VendingMachine> {
                         service: service,
                       );
                     }
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text('Insert ${adapter.faceValue} Dollars'),
-                      ),
-                    );
+                    _showDialog(adapter);
                   }
 
                   if (currentCurrencyIndex == 2) {
@@ -247,12 +240,7 @@ class _VendingMachineState extends State<VendingMachine> {
                         service: service,
                       );
                     }
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text('${adapter.faceValue}円を入れてください'),
-                      ),
-                    );
+                    _showDialog(adapter);
                   }
                 },
                 child: Container(
@@ -279,5 +267,43 @@ class _VendingMachineState extends State<VendingMachine> {
         ),
       ),
     );
+  }
+
+  void _showDialog(Currency currency) {
+    if (currency is Dollar) {
+      showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text('Please insert ${currency.faceValue}'),
+          );
+        },
+      );
+      return;
+    }
+
+    if (currency is Yen) {
+      showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text('${currency.faceValue}円を入れてください'),
+          );
+        },
+      );
+      return;
+    }
+
+    if (currency is Won) {
+      showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text('${currency.faceValue}원을 삽입해주십시오'),
+          );
+        },
+      );
+      return;
+    }
   }
 }
