@@ -1,4 +1,4 @@
-import 'package:design_patterns_flutter/currencies/won.dart';
+import 'package:design_patterns_flutter/singleton_and_adapter/currencies/won.dart';
 
 // 원격으로 환율을 받아오는 서비스라고 가정
 class ExchangeRateService {

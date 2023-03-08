@@ -1,5 +1,5 @@
-import 'package:design_patterns_flutter/adapter/adapter.dart';
-import 'package:design_patterns_flutter/currencies/dollar.dart';
+import 'package:design_patterns_flutter/singleton_and_adapter/adapter/adapter.dart';
+import 'package:design_patterns_flutter/singleton_and_adapter/currencies/dollar.dart';
 
 class DollarAdapter extends CurrencyAdapter implements Dollar {
   DollarAdapter({
