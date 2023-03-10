@@ -1,4 +1,4 @@
-import 'package:design_patterns_flutter/template_method_and_composite/template_method/shopping_item.dart';
+import 'package:design_patterns_flutter/template_method_and_composite/template_method/template_method_models/shopping_item.dart';
 
 class Top extends ShoppingItem {
   Top({required super.name, required super.price});
