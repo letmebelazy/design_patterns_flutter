@@ -55,6 +55,7 @@ class __CustomExpansionTileState extends State<_CustomExpansionTile> {
     for (int i = 0; i < widget.depthCount; i++) {
       depthSpaces += '  ';
     }
+    
     return ExpansionTile(
       initiallyExpanded: true,
       title: Text(
