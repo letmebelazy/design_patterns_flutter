@@ -7,6 +7,7 @@ import 'package:design_patterns_flutter/strategy_and_state/views/exercise_page.d
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
+  // 사람 객체를 생성자로 받고 있음
   final Person person;
 
   const DetailPage({
@@ -19,8 +20,12 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  // 운동 리스트
   List<String> exercises = ['복싱', '수영', '러닝'];
+  // 플래그 변수
   int currentIndex = -1;
+  // 운동으로 소모한 칼로리
+  // 운동 페이지에서 운동한 이후 돌아오며 비동기로 갱신됨
   int burnedCalories = 0;
 
   TextStyle normalStyle = TextStyle(
@@ -39,12 +44,16 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // 사람의 다이어트 상태에 따라 컬러가 변화
         backgroundColor:
             widget.person.currentState is DietDone ? Colors.blue : Colors.red,
+
+        // 다이어트 상태를 텍스트로 보여줌
         title: Text(
           widget.person.currentState.getCurrentState(),
         ),
         actions: [
+          // 다시 하기 기능
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
             child: Text(
@@ -61,6 +70,8 @@ class _DetailPageState extends State<DetailPage> {
             '운동을 선택해주세요.',
             style: TextStyle(fontSize: 20.0),
           ),
+
+          // 현재 남은 칼로리를 Person 객체에서 받고 있음
           Text(
             '현재 남은 칼로리: ${widget.person.leftCalorie}',
             style: TextStyle(fontSize: 20.0, color: Colors.pink),
@@ -117,6 +128,7 @@ class _DetailPageState extends State<DetailPage> {
           ),
           OutlinedButton(
             onPressed: () async {
+              // 간단한 유효성 검증 로직
               if (widget.person.leftCalorie <= 0) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -135,6 +147,7 @@ class _DetailPageState extends State<DetailPage> {
                 return;
               }
 
+              // 운동 페이지에서 소모한 칼로리를 비동기로 받아서 이 화면에서 갱신
               burnedCalories = await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) =>
@@ -145,6 +158,12 @@ class _DetailPageState extends State<DetailPage> {
               setState(() {
                 widget.person.leftCalorie -= burnedCalories;
 
+                // 운동 후 칼로리가 0이하면 상태를 바꿈
+                // 특정 상태를 주입하거나 특정 상태의 메서드를 이용하는 게 아닌
+                // 현재 상태의 메서드를 이용하는 것이 포인트
+                // currentState는 DietState로 선언되어 있고
+                // 모든 상태들이 DietState 인터페이스를 구현하기 때문에
+                // 다형성이 성립한다
                 if (widget.person.leftCalorie <= 0) {
                   widget.person.currentState.changeState();
                 }

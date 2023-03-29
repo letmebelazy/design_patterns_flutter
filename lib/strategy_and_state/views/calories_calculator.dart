@@ -2,7 +2,11 @@ import 'package:design_patterns_flutter/strategy_and_state/person.dart';
 import 'package:design_patterns_flutter/strategy_and_state/views/detail_page.dart';
 import 'package:flutter/material.dart';
 
+// 목표한 칼로리 소모를 선택한 운동에 맞춰 계산해주는 위젯(페이지)
 class CaloriesCalculator extends StatelessWidget {
+  // Stateless Widget을 쓰지만 final로 사용하지 않는 이유는
+  // 실제로 위젯 트리에서 상태 변화에 따라 다시 그려야하는 경우가 없으나
+  // 목표 칼로리를 입력할 때 값은 변해야하기 때문
   String calories = '0';
 
   @override

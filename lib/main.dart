@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Design Patterns',
+
+      // 빼고자 하는 목표 칼로리를 계산해주는 페이지
       home: CaloriesCalculator(),
       // ShoppingMallMenu(
       //   rootCategory: MenuCategory(depthCount: 0, categoryTitle: '메인 카테고리'),
