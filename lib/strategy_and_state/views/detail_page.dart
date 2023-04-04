@@ -1,6 +1,7 @@
 import 'package:design_patterns_flutter/strategy_and_state/person.dart';
 import 'package:design_patterns_flutter/strategy_and_state/state/diet_done.dart';
 import 'package:design_patterns_flutter/strategy_and_state/strategy/boxing.dart';
+import 'package:design_patterns_flutter/strategy_and_state/strategy/football.dart';
 import 'package:design_patterns_flutter/strategy_and_state/strategy/running.dart';
 import 'package:design_patterns_flutter/strategy_and_state/strategy/swimming.dart';
 import 'package:design_patterns_flutter/strategy_and_state/views/exercise_page.dart';
@@ -21,7 +22,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   // 운동 리스트
-  List<String> exercises = ['복싱', '수영', '러닝'];
+  List<String> exercises = ['복싱', '수영', '러닝', '축구'];
   // 플래그 변수
   int currentIndex = -1;
   // 운동으로 소모한 칼로리
@@ -121,6 +122,21 @@ class _DetailPageState extends State<DetailPage> {
 
                   widget.person.chooseExercise(
                     Running(),
+                  );
+                },
+              ),
+              TextButton(
+                child: Text(
+                  exercises[3],
+                  style: currentIndex == 3 ? focusedStyle : normalStyle,
+                ),
+                onPressed: () {
+                  setState(() {
+                    currentIndex = 3;
+                  });
+
+                  widget.person.chooseExercise(
+                    Football(),
                   );
                 },
               ),

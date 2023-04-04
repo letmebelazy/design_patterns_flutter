@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:math';
 
+import 'package:design_patterns_flutter/strategy_and_state/strategy/exercise.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
-import '../strategy/exercise.dart';
 
 class ExercisePage extends StatelessWidget {
   final Exercise exercise;

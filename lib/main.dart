@@ -1,3 +1,4 @@
+import 'package:design_patterns_flutter/facade_and_interpreter/view/season_changer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:design_patterns_flutter/strategy_and_state/views/calories_calculator.dart';
@@ -14,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Design Patterns',
 
-      // 빼고자 하는 목표 칼로리를 계산해주는 페이지
-      home: CaloriesCalculator(),
+      home: SeasonChanger(),
+      // CaloriesCalculator(),
       // ShoppingMallMenu(
       //   rootCategory: MenuCategory(depthCount: 0, categoryTitle: '메인 카테고리'),
       // ),
