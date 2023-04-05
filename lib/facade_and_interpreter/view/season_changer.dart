@@ -1,11 +1,11 @@
-import 'package:design_patterns_flutter/facade_and_interpreter/facade/weather_state.dart';
 import 'package:flutter/material.dart';
 
+import 'package:design_patterns_flutter/facade_and_interpreter/facade/weather_state.dart';
 import 'package:design_patterns_flutter/facade_and_interpreter/facade/humidity_controller.dart';
 import 'package:design_patterns_flutter/facade_and_interpreter/facade/season_facade.dart';
 import 'package:design_patterns_flutter/facade_and_interpreter/facade/snow_creator.dart';
 import 'package:design_patterns_flutter/facade_and_interpreter/facade/temperature_controller.dart';
-import 'package:design_patterns_flutter/facade_and_interpreter/interpreter/action.dart';
+import 'package:design_patterns_flutter/facade_and_interpreter/interpreter/motion.dart';
 import 'package:design_patterns_flutter/facade_and_interpreter/interpreter/movement.dart';
 import 'package:design_patterns_flutter/facade_and_interpreter/interpreter/rotation.dart';
 
@@ -17,27 +17,41 @@ class SeasonChanger extends StatefulWidget {
 }
 
 class _SeasonChangerState extends State<SeasonChanger> {
+  // (-2, 2) (-1, 2) (0, 2) (1, 2) (2, 2)
+  // (-2, 1) (-1, 1) (0, 1) (1, 1) (2, 1)
+  // (-2, 0) (-1, 0) (0, 0) (1, 0) (2, 0)
+  // (-2,-1) (-1,-1) (0,-1) (1,-1) (2,-1)
+  // (-2,-2) (-1,-2) (0,-2) (1,-2) (2,-2)
+  // 인덱스별로 위치값을 할당
   final List<Offset> offsets = List<Offset>.generate(25, (index) {
     double x = index % 5 - 2;
     double y = 2.0 - index ~/ 5;
     return Offset(x, y);
   });
+
+  // 파사드 객체 선언
   final SeasonFacade facade = SeasonFacade(
     temperatureController: TemperatureController(),
     humidityController: HumidityController(),
     snowCreator: SnowCreator(),
   );
 
+  // 상태 선언
   final WeatherState state = WeatherState();
 
+  // 계절이 달라지면 앱바 색이 달라짐. 앱바 색의 초기값
   Color appBarColor = Colors.white;
+
+  // 방향키&이동 문자 입력
   String input = '';
+
+  // 현재 인덱스 초기값 -1
+  // -1은 0~24의 인덱스에 해당하지 않을뿐만 아니라
+  // 추후 나올 indexWhere 메서드에서 해당 컬렉션에 해당 값이 없을 때 반환되는 숫자
   int currentIndex = -1;
+
+  // 처음 위치는 중앙: (0,0)
   Offset currentOffset = Offset(0, 0);
-  bool isSpring = false;
-  bool isSummer = false;
-  bool isAutumn = false;
-  bool isWinter = false;
 
   @override
   Widget build(BuildContext context) {
