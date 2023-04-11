@@ -21,9 +21,4 @@ class StackIterator implements CustomIterator {
     }
     return null;
   }
-
-  @override
-  List getContainer() {
-    return container;
-  }
 }

@@ -21,9 +21,4 @@ class QueueIterator implements CustomIterator {
     }
     return null;
   }
-
-  @override
-  List getContainer() {
-    return container;
-  }
 }
