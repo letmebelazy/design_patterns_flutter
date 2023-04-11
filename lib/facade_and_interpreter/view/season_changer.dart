@@ -239,7 +239,7 @@ class _SeasonChangerState extends State<SeasonChanger> {
                       color: Colors.transparent,
                       border: Border.all(color: Colors.black12),
                     ),
-                    child: currentIndex == index || currentIndex == -1
+                    child: currentIndex == 12 || currentIndex == -1
                         ? Image.asset(
                             'assets/plane.png',
                           )
@@ -397,7 +397,7 @@ class _SeasonChangerState extends State<SeasonChanger> {
   }
 
   Offset actionInterpret(Offset currentOffset) {
-    final List<Motion> actions = [];
+    final List<Motion> motions = [];
     final List<String> inputCharacters = input.split('');
     Offset changedOffset = currentOffset;
 
@@ -405,29 +405,31 @@ class _SeasonChangerState extends State<SeasonChanger> {
       switch (char) {
         case '←':
           {
-            actions.add(LeftRotation());
+            motions.add(LeftRotation());
             break;
           }
         case '→':
           {
-            actions.add(RightRotation());
+            motions.add(RightRotation());
             break;
           }
         case '↑':
           {
-            actions.add(TopRotation());
+            motions.add(TopRotation());
             break;
           }
         case '↓':
           {
-            actions.add(BottomRotation());
+            motions.add(BottomRotation());
             break;
           }
         default:
           {
-            Movement movement =
-                Movement(rotation: actions.last, currentOffset: changedOffset);
-            actions.add(movement);
+            Movement movement = Movement(
+              rotation: motions.last,
+              currentOffset: changedOffset,
+            );
+            motions.add(movement);
             changedOffset = movement.interpret();
             break;
           }
