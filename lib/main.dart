@@ -1,5 +1,6 @@
-import 'package:design_patterns_flutter/iterator_and_factory_method/view/collection_comparison.dart';
 import 'package:flutter/material.dart';
+
+import 'package:design_patterns_flutter/abstract_factory_and_command/view/greeting_display.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Design Patterns',
 
-      home: CollectionComparison(), // 반복자/팩토리메서드 패턴
+      home: GreetingDisplay(), // 추상팩토리/커맨드 패턴
+      // CollectionComparison(), // 반복자/팩토리메서드 패턴
       // SeasonChanger(), // 파사드/인터프리터 패턴
       // CaloriesCalculator(), // 전략/상태 패턴
       // ShoppingMallMenu( // 템플릿메서드/컴포지트 패턴
