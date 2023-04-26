@@ -12,6 +12,7 @@ class GreetingDisplay extends StatefulWidget {
 }
 
 class _GreetingDisplayState extends State<GreetingDisplay> {
+  // 뷰 위젯이 클라이언트가 됨
   final List<Command> commands = [];
   int languageIndex = -1;
   int greetingIndex = -1;
@@ -187,6 +188,7 @@ class _GreetingDisplayState extends State<GreetingDisplay> {
               child: ListView.builder(
                 itemCount: commands.length,
                 itemBuilder: (context, index) {
+                  // 리스트뷰 빌더가 사실상 인보커의 역할
                   return Center(child: commands[index].execute());
                 },
               ),
