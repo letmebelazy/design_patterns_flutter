@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:design_patterns_flutter/abstract_factory_and_command/view/greeting_display.dart';
+import 'package:design_patterns_flutter/memento_and_prototype/exercise_log.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Design Patterns',
 
-      home: GreetingDisplay(), // 추상팩토리/커맨드 패턴
+      home: ExerciseLog(),
+      // GreetingDisplay(), // 추상팩토리/커맨드 패턴
       // CollectionComparison(), // 반복자/팩토리메서드 패턴
       // SeasonChanger(), // 파사드/인터프리터 패턴
       // CaloriesCalculator(), // 전략/상태 패턴
