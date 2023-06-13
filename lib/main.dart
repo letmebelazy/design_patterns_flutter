@@ -1,3 +1,4 @@
+import 'package:design_patterns_flutter/proxy_and_decorator/badge_collector.dart';
 import 'package:flutter/material.dart';
 
 import 'package:design_patterns_flutter/memento_and_prototype/exercise_log.dart';
@@ -13,8 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Design Patterns',
-
-      home: ExerciseLog(),
+      debugShowCheckedModeBanner: false,
+      home: BadgeCollector(),
+      // ExerciseLog(), // 메멘토/프로토타입 패턴
       // GreetingDisplay(), // 추상팩토리/커맨드 패턴
       // CollectionComparison(), // 반복자/팩토리메서드 패턴
       // SeasonChanger(), // 파사드/인터프리터 패턴
