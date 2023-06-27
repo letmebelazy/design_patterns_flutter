@@ -1,4 +1,5 @@
 import 'package:design_patterns_flutter/bridge_and_builder/about_trip.dart';
+import 'package:design_patterns_flutter/flyweight_and_chain_of_responsibility/github_lawns.dart';
 import 'package:design_patterns_flutter/proxy_and_decorator/badge_collector.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Design Patterns',
       debugShowCheckedModeBanner: false,
-      home: AboutTrip(),
+      home: GithubLawns(), // 플라이웨이트 패턴
+      // AboutTrip(),
       // BadgeCollector(), // 프록시/데코레이터 패턴
       // ExerciseLog(), // 메멘토/프로토타입 패턴
       // GreetingDisplay(), // 추상팩토리/커맨드 패턴
